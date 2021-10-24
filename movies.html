@@ -46,11 +46,12 @@
     </div>
   </nav>
   <div class="container">
-    
+
     <div class="alert alert-dismissible alert-warning">
       <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
       <h4 class="alert-heading">Warning!</h4>
-      <p class="mb-0">Posting incorrect information about movies will be punished by  <a href="https://www.youtube.com/FinnReinhardt" class="alert-link">DEATH</a>.</p>
+      <p class="mb-0">Posting incorrect information about movies will be punished by <a
+          href="https://www.youtube.com/FinnReinhardt" class="alert-link">DEATH</a>.</p>
     </div>
 
     <div class="table-responsive" id="movie_table">
@@ -108,7 +109,7 @@
           </tr>
         </tbody>
       </table>
-      <input type="text" id="movie_title" placeholder="Movie Title" >
+      <input type="text" id="movie_title" placeholder="Movie Title">
       <input type="date" id="movie_date" placeholder="Release Date">
       <input type="number" id="movie_length" placeholder="Length (Minutes)">
       <input type="text" id="movie_regisseur" placeholder="Regisseur">
@@ -117,119 +118,131 @@
       <button type="button" class="btn btn-danger add_movie" id="clear_input">Clear Form</button>
     </div>
 
-  
-  <div class="row" style="margin-top: 25px;">
-    <!-- Button trigger modal -->
-  <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
-    Launch demo modal
-  </button>
-  <!-- Modal -->
-  <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
-          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-        </div>
-        <div class="modal-body">
-          ...
-        </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-          <button type="button" class="btn btn-primary">Save changes</button>
+
+    <div class="row" style="margin-top: 25px;">
+      <!-- Button trigger modal -->
+      <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
+        How do I use this?
+      </button>
+      <!-- Modal -->
+      <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="exampleModalLabel">It's very simple:</h5>
+              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+              <ul class="list-group">
+                <li class="list-group-item d-flex justify-content-between align-items-center">
+                  Fill in all the form fields
+                  <span class="badge bg-primary rounded-pill">1</span>
+                </li>
+                <li class="list-group-item d-flex justify-content-between align-items-center">
+                  Click on "Add Movie Title"
+                  <span class="badge bg-primary rounded-pill">2</span>
+                </li>
+                <li class="list-group-item d-flex justify-content-between align-items-center">
+                  Don't enter wrong information or death will be sentenced upon you
+                  <span class="badge bg-primary rounded-pill">3</span>
+                </li>
+              </ul>
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-success " data-bs-dismiss="modal">Got it!</button>
+            </div>
+          </div>
         </div>
       </div>
+
     </div>
-  </div>
 
   </div>
-    
-  </div>
 
-  
+
   <script>
-      // Validate Form Content
-      $('#submit_button').click(function(){
-        var movieTitle = $('#movie_title').val();
-        var movieDate = $('#movie_date').val();
-        var movieLength = $('#movie_length').val();
-        var movieRegisseur = $('#movie_regisseur').val();
-        var movieRating = $('#movie_rating').val();
-        
+    // Validate Form Content
+    $('#submit_button').click(function () {
+      var movieTitle = $('#movie_title').val();
+      var movieDate = $('#movie_date').val();
+      var movieLength = $('#movie_length').val();
+      var movieRegisseur = $('#movie_regisseur').val();
+      var movieRating = $('#movie_rating').val();
 
-        $('#movie_table > table > tbody > tr > td').each(function () {
-          if($(this).html() == movieTitle){
-            $('#movie_title').css('color','#FF0000');
-          }else{
-            $('#movie_title').css('color','#000000');
-          }
-        });
-        
-        // Change
 
-        if(!movieTitle){
-          movieTitle = '-----'
-        }
-
-        if(!movieDate){
-          var d = new Date;
-          var year = d.getFullYear();
-          var month = d.getMonth()+1;
-          var day = d.getDate();
-          movieDate =  day+'.'+month+'.'+year
-          
-        }
-        
-        if(!movieLength || movieLength < 0){
-          movieLength = 120;
-        }
-
-    
-        if(movieRating > 5 ){
-          $('#movie_rating').css('color','#FF0000');
-          movieRating = 5;
-        } else if(movieRating < 0){
-          $('#movie_rating').css('color','#FF0000');
-          movieRating = 1;
+      $('#movie_table > table > tbody > tr > td').each(function () {
+        if ($(this).html() == movieTitle) {
+          $('#movie_title').css('color', '#FF0000');
         } else {
-          $('#movie_rating').css('color','#000000');
+          $('#movie_title').css('color', '#000000');
         }
-
-        if(!movieRating){
-          movieRating = 3;
-        }
-
-        if(!movieRegisseur){
-          movieRegisseur = 'Finn Reinhardt';
-        }
-
-        console.log(movieTitle);
-        $('#movie_table > table > tbody').append('<tr><th scope="row">X</th><td colspan="1">'+movieTitle+'</td><td>'+movieDate+'</td><td>'+movieLength+' Minutes</td><td>'+movieRegisseur+'</td><td>'+movieRating+'/5</td></tr>');
-        // alert('TEST');
-        
-        // $('#movie_table > table').css('background-color','default');
-        var counter = 1;
-        $('#movie_table > table > tbody > tr > th').each(function () {
-                $(this).html(counter);
-                counter++;
-            });
-      });
-  
-      $('#clear_input').click(function(){
-        $('#movie_title').val('');
-        $('#movie_date').val('');
-        $('#movie_length').val('');
-        $('#movie_regisseur').val('');
-        $('#movie_rating').val('');
-        
       });
 
-      $(body).on('click','button.submit_button',function(){
-        $(document).css('background-color','#FFFF00');
-        // $('#movie_table > tbody > tr > th').css('background-color','#FF0000');
-        alert('TEST');
+      // Change
+
+      if (!movieTitle) {
+        movieTitle = '-----'
+      }
+
+      if (!movieDate) {
+        var d = new Date;
+        var year = d.getFullYear();
+        var month = d.getMonth() + 1;
+        var day = d.getDate();
+        movieDate = day + '.' + month + '.' + year
+
+      }
+
+      if (!movieLength || movieLength < 0) {
+        movieLength = 120;
+      }
+
+
+      if (movieRating > 5) {
+        $('#movie_rating').css('color', '#FF0000');
+        movieRating = 5;
+      } else if (movieRating < 0) {
+        $('#movie_rating').css('color', '#FF0000');
+        movieRating = 1;
+      } else {
+        $('#movie_rating').css('color', '#000000');
+      }
+
+      if (!movieRating) {
+        movieRating = 3;
+      }
+
+      if (!movieRegisseur) {
+        movieRegisseur = 'Finn Reinhardt';
+      }
+
+      console.log(movieTitle);
+      $('#movie_table > table > tbody').append('<tr><th scope="row">X</th><td colspan="1">' + movieTitle + '</td><td>' + movieDate + '</td><td>' + movieLength + ' Minutes</td><td>' + movieRegisseur + '</td><td>' + movieRating + '/5</td></tr>');
+      // alert('TEST');
+
+      // $('#movie_table > table').css('background-color','default');
+      var counter = 1;
+      $('#movie_table > table > tbody > tr > th').each(function () {
+        $(this).html(counter);
+        counter++;
       });
-    </script>
+    });
+
+    $('#clear_input').click(function () {
+      $('#movie_title').val('');
+      $('#movie_date').val('');
+      $('#movie_length').val('');
+      $('#movie_regisseur').val('');
+      $('#movie_rating').val('');
+
+    });
+
+    $(body).on('click', 'button.submit_button', function () {
+      $(document).css('background-color', '#FFFF00');
+      // $('#movie_table > tbody > tr > th').css('background-color','#FF0000');
+      alert('TEST');
+    });
+  </script>
 
 
   <script>
